@@ -3,6 +3,11 @@ import ReactDOM from 'react-dom';
 
 //Important that bootstrap is imported first!
 import 'bootstrap/dist/css/bootstrap.min.css';
+//To have icons and better fonts
+import 'font-awesome/css/font-awesome.min.css';
+//To create social media links
+import 'bootstrap-social/bootstrap-social.css';
+
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';

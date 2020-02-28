@@ -16,10 +16,6 @@ class Menu extends Component{
         this.setState( { selectedDish: dish } );
     }
 
-    renderDish(dish){
-        return <DishDetail selectedDish={dish}/>
-    }
-
     renderComments(comments){
         if(comments == null){
             return <div></div>
@@ -63,7 +59,7 @@ class Menu extends Component{
                     {menu}
                 </div>
                 <div className="row">
-                    {this.renderDish(this.state.selectedDish)}
+                    <DishDetail selectedDish={this.state.selectedDish}/>
                     {this.renderComments(this.state.selectedDish?.comments)}
                 </div>
             </div>

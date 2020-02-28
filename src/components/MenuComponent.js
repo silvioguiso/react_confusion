@@ -16,28 +16,6 @@ class Menu extends Component{
         this.setState( { selectedDish: dish } );
     }
 
-    renderComments(comments){
-        if(comments == null){
-            return <div></div>
-        }
-
-        const commentsAsListItems = comments.map((comment) => {
-            return (
-                <li key={comment.id}>
-                    <p>{comment.comment}</p>
-                    <p>-- {comment.author}, {comment.date}</p>
-                </li>
-            )
-        })
-
-        return <div className="col-12 col-md-5 m-1">
-                    <h4>Comments</h4>
-                    <ul className="list-unstyled">
-                        {commentsAsListItems}
-                    </ul>
-                </div>
-    }
-
     render(){
 
         const menu = this.props.dishes.map((dish) => {
@@ -58,10 +36,7 @@ class Menu extends Component{
                 <div className='row'>
                     {menu}
                 </div>
-                <div className="row">
-                    <DishDetail selectedDish={this.state.selectedDish}/>
-                    {this.renderComments(this.state.selectedDish?.comments)}
-                </div>
+                <DishDetail selectedDish={this.state.selectedDish}/>
             </div>
         );
     }

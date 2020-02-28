@@ -6,7 +6,7 @@ class Header extends Component{
     render(){
 
         return (
-            //This is a React Fragment (Short form. long form = React.Fragment)
+            //This is a React Fragment (Short form = <> </>. long form = React.Fragment)
             <React.Fragment>
                 <Navbar dark>
                     <div className='container'>

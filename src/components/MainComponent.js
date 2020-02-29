@@ -5,6 +5,7 @@ import Menu from './MenuComponent'
 import Header from './HeaderComponent'
 import Footer from './FooterComponent'
 import Contact from './ContactComponent'
+import DishDetail from './DishdetailComponent'
 
 //Data
 import { DISHES } from '../shared/dishes'
@@ -40,15 +41,25 @@ class Main extends Component{
             )
         }
 
+        const DishWIthId = ({match}) => {
+            return (
+                <DishDetail 
+                    dish={this.state.dishes.filter((dish) => dish.id === parseInt(match.params.dishId, 10))[0]}
+                    comments={this.state.comments.filter((comment) => comment.dishId === parseInt(match.params.dishId, 10))}
+                /> //10 is a base 10 integer
+            );
+        }
+
         return (
             <div>
                 <Header />
 
                 <Switch>
-                    <Route path="/home" component={HomePage} />
-                    <Route exact path="/menu" component={() => <Menu dishes={this.state.dishes}/>} />
-                    <Route exact path="/contactus" component={Contact} />
-                    <Redirect to="/home" />
+                    <Route path='/home' component={HomePage} />
+                    <Route exact path='/menu' component={() => <Menu dishes={this.state.dishes}/>} />
+                    <Route path='/menu/:dishId' component={DishWIthId}/>
+                    <Route exact path='/contactus' component={Contact} />
+                    <Redirect to='/home' />
                 </Switch>
 
                 <Footer />

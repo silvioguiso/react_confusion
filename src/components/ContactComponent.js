@@ -8,12 +8,8 @@ function Contact(props){
         <div className='container'>
             <div className='row'>
                 <Breadcrumb>
-                    <BreadcrumbItem>
-                        <Link to='/home'>Home</Link>
-                    </BreadcrumbItem>
-                    <BreadcrumbItem>
-                        <Link>Contact Us</Link>
-                    </BreadcrumbItem>
+                    <BreadcrumbItem><Link to='/home'>Home</Link></BreadcrumbItem>
+                    <BreadcrumbItem active>Contact Us</BreadcrumbItem>
                 </Breadcrumb>
             </div>
             <div className='row row-content'>

@@ -29,12 +29,8 @@ import { Link } from 'react-router-dom'
             <div className='container'>
                 <div className='row'>
                     <Breadcrumb>
-                        <BreadcrumbItem>
-                            <Link to='/home'>Home</Link>
-                        </BreadcrumbItem>
-                        <BreadcrumbItem>
-                            <Link>Menu</Link>
-                        </BreadcrumbItem>
+                        <BreadcrumbItem><Link to='/home'>Home</Link></BreadcrumbItem>
+                        <BreadcrumbItem active>Menu</BreadcrumbItem>
                     </Breadcrumb>
                     <div className='col-12'>
                         <h3>Menu</h3>

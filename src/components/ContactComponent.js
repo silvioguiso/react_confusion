@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Breadcrumb, BreadcrumbItem, Button, Col, Row, Label } from 'reactstrap'
 import { Link } from 'react-router-dom'
 import { Control, Form, Errors } from 'react-redux-form'
+import { baseUrl } from '../shared/baseUrl'
 
 const required = (val) => val && val.length;
 const maxLength = (len) => (val) => !(val) || val.length <= len;
@@ -18,9 +19,55 @@ class Contact extends Component{
     }
 
     handleSubmit(values){
-        console.log("Current State is: " + JSON.stringify(values));
-        alert("Current State is: " + JSON.stringify(values));
-        this.props.resetFeedbackForm();
+        
+        var newFeedback = {
+            firstname: values.firstname,
+            lastname: values.lastname,
+            telnum: values.telnum,
+            email: values.email,
+            agree: values.agree,
+            contactType: values.contactType,
+            message: values.message
+        };
+        
+        newFeedback.date = new Date().toISOString();
+
+        fetch(
+            baseUrl + 'feedback', {
+                method: 'POST',
+                body: JSON.stringify(newFeedback),
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                credentials: 'same-origin'
+            }
+        )
+        .then(
+            response => {
+                if(response.ok){
+                    return response;
+                }
+                else{
+                    var error = new Error('Error ' + response.status + ': ' + response.statusText);
+                    error.response = response;
+                    throw error;
+                }
+            },
+            error => {
+                var errMsg = new Error(error.message);
+                throw errMsg;
+            }
+        )
+        .then(response => response.json())
+        .then(response => {
+            this.props.resetFeedbackForm();
+            console.log(response);
+            alert(JSON.stringify(response));
+        })
+        .catch(error => {
+            console.log('Post Feedback: ' + error.message);
+            alert("Your feedback could not be posted.\nError: " + error.message);
+        });
     }
 
     render(){
